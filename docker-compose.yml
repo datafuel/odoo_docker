@@ -1,0 +1,21 @@
+version: '3'
+services:
+    odoo_web:
+        image: odoo:latest
+        container_name: odoo_web
+        depends_on:
+            - odoo_db
+        environment:
+            - HOST=odoo_db
+            - USER=odoo
+            - PASSWORD=odoo
+        ports:
+            - "8069:8069"
+    
+    odoo_db:
+        image: postgres:latest
+        container_name: odoo_db
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_PASSWORD=odoo
+            - POSTGRES_USER=odoo
